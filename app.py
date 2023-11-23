@@ -19,22 +19,26 @@ def get_pdf_text(pdf_docs):
 
 def get_text_chunks(text):
     text_splitter = CharacterTextSplitter(
-        separator="\n",
-        chunk_size=1000,
-        chunk_overlap=200,
-        length_function=len
+        separator="\n",     # Quebra de linha em pedaços de texto a partir de um separador
+        chunk_size=1000,    # Tamanho do pedaço de texto
+        chunk_overlap=100,  # Tamanho do pedaço de texto de sobreposição
+        length_function=len # Função que retorna o número de caracteres de cada pedaço de texto
     )
     chunks = text_splitter.split_text(text)  # Divide o texto em pedaços
     return chunks
 
 def get_vectorstore(text_chunks):
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings()  # Cria um gerador de vetores de embedding OpenAI
     # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)  # Cria um vetor de armazenamento
     return vectorstore
 
 def get_conversation_chain(vectorstore):
-    llm = ChatOpenAI()
+    llm = ChatOpenAI(
+        temperature=0.2,             # Configura a temperatura
+        model_name="gpt-3.5-turbo",  # Configura o modelo de LLM
+        max_tokens=500               # Configura o número maximo de tokens por resposta
+    )
     # llm = HuggingFaceHub(repo_id="google/flan-t5-xxl", model_kwargs={"temperature":0.5, "max_length":512})
 
     memory = ConversationBufferMemory(
