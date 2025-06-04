@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
@@ -67,10 +68,13 @@ def handle_userinput(user_question):
 
 def main():
     load_dotenv()  # Carrega as variáveis de ambiente
+    openai_api_key = os.getenv("OPENAI_API_KEY")  # Obtém a chave da API OpenAI
     st.set_page_config(page_title="Converse com múltiplos PDFs", page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
 
     st.header("Converse com múltiplos PDFs :books:")
+    if not openai_api_key:
+        st.error("Defina a variável OPENAI_API_KEY no arquivo .env para continuar.")
     user_question = st.text_input("Faça uma pergunta sobre seus documentos:")
     if user_question and 'conversation' in st.session_state:  # Verifica se 'conversation' está no estado da sessão
         handle_userinput(user_question)
@@ -79,7 +83,9 @@ def main():
         st.subheader("Seus documentos")
         pdf_docs = st.file_uploader("Carregue seus PDFs aqui e clique em 'Processar'", accept_multiple_files=True)
         if st.button("Processar"):
-            if pdf_docs:
+            if not openai_api_key:
+                st.error("Defina a variável OPENAI_API_KEY no arquivo .env para continuar.")
+            elif pdf_docs:
                 with st.spinner("Processando"):
                     # Obtém o texto do PDF
                     raw_text = get_pdf_text(pdf_docs)
