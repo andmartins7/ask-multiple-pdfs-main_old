@@ -32,7 +32,11 @@ Para instalar o MultiPDF Chat App, siga estes passos:
    pip install -r requirements.txt
    ```
 
-3. Obtenha uma chave de API da OpenAI e adicione-a ao arquivo `.env` no diretório do projeto.
+3. Instale o **pytest** para executar os testes da aplicação. Recomenda-se utilizar um ambiente virtual:
+   ```
+   pip install pytest
+   ```
+4. Obtenha uma chave de API da OpenAI e adicione-a ao arquivo `.env` no diretório do projeto.
 ```commandline
 OPENAI_API_KEY=your_secrit_api_key
 ```
