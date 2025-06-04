@@ -32,16 +32,16 @@ Para instalar o MultiPDF Chat App, siga estes passos:
    pip install -r requirements.txt
    ```
 
-3. Obtenha uma chave de API da OpenAI e adicione-a ao arquivo `.env` no diretório do projeto.
+3. Copie o arquivo `.env.example` para `.env` e adicione sua chave de API da OpenAI.
 ```commandline
-OPENAI_API_KEY=your_secrit_api_key
+OPENAI_API_KEY=your_api_key_here
 ```
 
 ## Uso
 -----
 Para usar o MultiPDF Chat App, siga estes passos:
 
-1. Certifique-se de ter instalado as dependências necessárias e adicionado a chave da API da OpenAI ao arquivo `.env`.
+1. Certifique-se de ter copiado `.env.example` para `.env` e adicionado sua chave da API da OpenAI.
 
 2. Execute o arquivo `app.py` usando a CLI do Streamlit. Execute o seguinte comando:
    ```
