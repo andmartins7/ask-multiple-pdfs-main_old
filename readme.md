@@ -53,3 +53,5 @@ Para usar o MultiPDF Chat App, siga estes passos:
 4. Carregue vários documentos PDF no aplicativo, seguindo as instruções fornecidas.
 
 5. Faça perguntas em linguagem natural sobre os PDFs carregados usando a interface de chat.
+## Licença
+Este projeto está licenciado sob os termos do MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
